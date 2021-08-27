@@ -5,16 +5,28 @@
 class Person {
 private:
     std::string p_name = "NoName";
+    int         p_age = 0;
     int         p_sex = 0; // 0 - female, 1 - male
     int         p_weight = 0;
 public:
     Person() {}
 
-    Person(std::string name, int sex, int weight) : p_name(name), p_sex(sex), p_weight(weight) {}
+    Person(std::string name, int age, int sex, int weight) : p_name(name), p_age(age), p_sex(sex), p_weight(weight) {}
 
     void setName(std::string name) {
         p_name = name;
     }
+
+    bool setAge(int age) {
+        if (age > 0) {
+            p_age = age;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     bool setSex(int sex) {
         if (sex >= 0 && sex <= 1) {
             p_sex = sex;
@@ -32,6 +44,9 @@ public:
 
     std::string getName() {
         return p_name;
+    }
+    int getAge() {
+        return p_age;
     }
     int getSex() const {
         return p_sex;
@@ -51,7 +66,7 @@ public:
         s_count++;
     }
 
-    Student(std::string name, int sex, int weight, int year) : Person(name, sex, weight), s_year(year) {
+    Student(std::string name, int age, int sex, int weight, int year) : Person(name, age, sex, weight), s_year(year) {
         s_count++;
     }
 
@@ -105,7 +120,9 @@ int main() {
     first.incrementYear(-1);
 
     std::cout   << first.getName()
-                << " " 
+                << " "
+                << first.getAge()
+                << " "
                 << first.getSex()
                 << " " 
                 << first.getWeight()
@@ -115,13 +132,15 @@ int main() {
                 << first.getCount()
                 << std::endl;
 
-    Student second("Vasya", 1, 90, 1);
+    Student second("Vasya", 23, 1, 90, 1);
     second.setYear(2);
     second.incrementYear(1);
 
     std::cout   << second.getName()
                 << " "
                 << second.getSex()
+                << " "
+                << second.getAge()
                 << " "
                 << second.getWeight()
                 << " "
