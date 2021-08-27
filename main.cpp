@@ -38,6 +38,16 @@ public:
 
 };
 
+class Student : public Person{
+private:
+    int s_year = 1;
+public:
+    Student(std::string name, int sex, int weight, int year) : Person(name, sex, weight), s_year(year){
+
+    }
+    
+};
+
 int main(){
 
     Person person("Katya", 0, 60);
