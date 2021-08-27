@@ -47,9 +47,17 @@ private:
     int s_year = 1;
     static int s_count;
 public:
-    Student() {}
+    Student() {
+        s_count++;
+    }
 
-    Student(std::string name, int sex, int weight, int year) : Person(name, sex, weight), s_year(year) {}
+    Student(std::string name, int sex, int weight, int year) : Person(name, sex, weight), s_year(year) {
+        s_count++;
+    }
+
+    ~Student() {
+        s_count--;
+    }
 
     void setYear(int year) {
         s_year = year;
@@ -82,24 +90,45 @@ public:
         return s_year;
     }
 
+    int getCount() {
+        return s_count;
+    }
+
 };
+
+int Student::s_count = 0;
 
 int main() {
 
-    Person person("Katya", 0, 60);
-    std::cout << person.getName() << " " << person.getSex() << " " << person.getWeight() << std::endl;
+    Student first;
+    first.setYear(4);
+    first.incrementYear(-1);
 
-    person.setName("Vasya");
-    person.setSex(1);
-    person.setWeight(90);
+    std::cout   << first.getName()
+                << " " 
+                << first.getSex()
+                << " " 
+                << first.getWeight()
+                << " " 
+                << first.getYear()
+                << " " 
+                << first.getCount()
+                << std::endl;
 
-    std::cout << person.getName() << " " << person.getSex() << " " << person.getWeight() << std::endl;
+    Student second("Vasya", 1, 90, 1);
+    second.setYear(2);
+    second.incrementYear(1);
 
-    Student student;
-    student.setYear(4);
-    student.incrementYear(-1);
-
-    std::cout << student.getName() << " " << student.getSex() << " " << student.getWeight() << " " << student.getYear();
+    std::cout   << second.getName()
+                << " "
+                << second.getSex()
+                << " "
+                << second.getWeight()
+                << " "
+                << second.getYear()
+                << " "
+                << second.getCount()
+                << std::endl;
 
 
     return 0;
