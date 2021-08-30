@@ -115,12 +115,10 @@ int Student::s_count = 0;
 
 class Fruit{
 private:
-    std::string name = "Fruit";
-    std::string color = "orange";
+    std::string name;
+    std::string color;
 public:
-    Fruit(){}
-
-    Fruit(std::string _color) : color(_color){}
+    Fruit(std::string _color, std::string _name = "fruit") : color(_color), name(_name){}
 
     void setName(std::string _name){
         _name = name;
@@ -138,49 +136,69 @@ public:
 };
 
 class Apple : public Fruit{
-    Apple(){
-        
-    }
-
+public:
+    Apple(std::string _color, std::string _name = "apple") : Fruit(_color, _name){}
 };
 
+class Banana : public Fruit{
+public:
+    Banana(std::string _color = "yellow", std::string _name = "banana") : Fruit(_color, _name){}
+};
 
-int main() {
+class GrannySmith : public Apple{
+public:
+    GrannySmith(std::string _color = "green", std::string _name = "Granny Smith apple") : Apple(_color, _name){}
+};
 
+void task1(){
     Student first;
     first.setYear(4);
     first.incrementYear(-1);
 
     std::cout   << first.getName()
-    << " "
-    << first.getAge()
-    << " "
-    << first.getSex()
-    << " "
-    << first.getWeight()
-    << " "
-    << first.getYear()
-    << " "
-    << first.getCount()
-    << std::endl;
+                << " "
+                << first.getAge()
+                << " "
+                << first.getSex()
+                << " "
+                << first.getWeight()
+                << " "
+                << first.getYear()
+                << " "
+                << first.getCount()
+                << std::endl;
 
     Student second("Vasya", 23, 1, 90, 1);
     second.setYear(2);
     second.incrementYear(1);
 
     std::cout   << second.getName()
-    << " "
-    << second.getSex()
-    << " "
-    << second.getAge()
-    << " "
-    << second.getWeight()
-    << " "
-    << second.getYear()
-    << " "
-    << second.getCount()
-    << std::endl;
+                << " "
+                << second.getSex()
+                << " "
+                << second.getAge()
+                << " "
+                << second.getWeight()
+                << " "
+                << second.getYear()
+                << " "
+                << second.getCount()
+                << std::endl;
+}
 
+void task2(){
+    Apple a("red");
+    Banana b;
+    GrannySmith c;
+
+    std::cout << "My " << a.getName() << " is " << a.getColor() << ".\n";
+    std::cout << "My " << b.getName() << " is " << b.getColor() << ".\n";
+    std::cout << "My " << c.getName() << " is " << c.getColor() << ".\n";
+}
+
+int main() {
+    //task1();
+
+    task2();
 
     return 0;
-}
