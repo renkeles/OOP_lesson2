@@ -79,7 +79,7 @@ public:
     }
 
     bool incrementYear(int inc) {
-        if (inc > 0) { 
+        if (inc > 0) {
             for (int i = 0; i < inc; i++) {
                 s_year++;
             }
@@ -87,8 +87,8 @@ public:
         }
         else if (inc < 0) {
             if (abs(inc) >= s_year) {
-                    s_year = 1;
-                    return true;
+                s_year = 1;
+                return true;
             }
             for (int i = 0; i < abs(inc); i++) {
                 s_year--;
@@ -113,6 +113,38 @@ public:
 
 int Student::s_count = 0;
 
+class Fruit{
+private:
+    std::string name = "Fruit";
+    std::string color = "orange";
+public:
+    Fruit(){}
+
+    Fruit(std::string _color) : color(_color){}
+
+    void setName(std::string _name){
+        _name = name;
+    }
+    void setColor(std::string _color){
+        _color = color;
+    }
+    std::string getName(){
+        return name;
+    };
+    std::string getColor(){
+        return color;
+    }
+    friend class Apple;
+};
+
+class Apple : public Fruit{
+    Apple(){
+        
+    }
+
+};
+
+
 int main() {
 
     Student first;
@@ -120,34 +152,34 @@ int main() {
     first.incrementYear(-1);
 
     std::cout   << first.getName()
-                << " "
-                << first.getAge()
-                << " "
-                << first.getSex()
-                << " " 
-                << first.getWeight()
-                << " " 
-                << first.getYear()
-                << " " 
-                << first.getCount()
-                << std::endl;
+    << " "
+    << first.getAge()
+    << " "
+    << first.getSex()
+    << " "
+    << first.getWeight()
+    << " "
+    << first.getYear()
+    << " "
+    << first.getCount()
+    << std::endl;
 
     Student second("Vasya", 23, 1, 90, 1);
     second.setYear(2);
     second.incrementYear(1);
 
     std::cout   << second.getName()
-                << " "
-                << second.getSex()
-                << " "
-                << second.getAge()
-                << " "
-                << second.getWeight()
-                << " "
-                << second.getYear()
-                << " "
-                << second.getCount()
-                << std::endl;
+    << " "
+    << second.getSex()
+    << " "
+    << second.getAge()
+    << " "
+    << second.getWeight()
+    << " "
+    << second.getYear()
+    << " "
+    << second.getCount()
+    << std::endl;
 
 
     return 0;
