@@ -132,7 +132,6 @@ public:
     std::string getColor(){
         return color;
     }
-    friend class Apple;
 };
 
 class Apple : public Fruit{
